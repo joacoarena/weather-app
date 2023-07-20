@@ -4,22 +4,17 @@
  export default function weatherApp()  {
   const [weather, setWeather] = useState(null)
 
-async function loadInfo(city = 'london') {
-
-
-  try {
-    const request = await fetch(`${process.env.REACT_APP_URL}&key=${process.env.REACT_APP_KEY}&q=${city}`)
+  async function loadInfo(city = 'london') {
     
-    const json = await request.json()
+    try {
+      const request = await fetch(`${process.env.REACT_APP_URL}&KEY=${process.env.REACT_APP_KEY}${city}`)
 
-    setWeather(json)
-
-    console.log(json)
-  } catch (error) {
-    
+      const json = request.json();
+      console.log(json)
+    } catch (error) {
+      console.log(error)
+    }
   }
-
-}
 
   function handleChangeCity(city) {
     setWeather(null)
@@ -28,7 +23,7 @@ async function loadInfo(city = 'london') {
    return (
      <div>
       <WeatherForm  onChangeCity={handleChangeCity}/>
-      <div>{weather?.current.temp_c}</div>
+      <div>info</div>
      </div>
    )
  }

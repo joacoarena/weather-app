@@ -1,24 +1,23 @@
 import React, { useState } from 'react'
 
-const WeatherForm = ({onChangeCity}) => {
+export default function WeatherForm ({onChangeCity}) {
     const [city, setCity] = useState('')
 
-    function onChange(e) {
-        const value = e.target.value
-        if (value !== '') {
-            setCity(value)   
-        }
+    function handleChange(e) {
+    const value = e.target.value;
+    if (value !== '') {
+       setCity(value)
     }
-function handleSubmit(e) {
-    e.prevent.default();
-    onChangeCity(city)
-}
-
+    }
+     
+      function handleSubmit(e) {
+        e.preventDefault();
+        onChangeCity(city)
+      }
   return (
-    <form action="" onSubmit={handleSubmit}>
-        <input type="text" onChange={onChange} />
+    <form  onSubmit={handleSubmit}>
+        <input type="text" onChange={handleChange} />
     </form>
     )
 }
 
-export default WeatherForm
